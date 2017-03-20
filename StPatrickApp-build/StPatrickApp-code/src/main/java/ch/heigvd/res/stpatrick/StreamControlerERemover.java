@@ -11,17 +11,19 @@ import java.io.Writer;
 
 /**
  *
- * @author Maxime
+ * @author Maxime Guillod
  */
-public class StreamControler implements IStreamProcessor{
+public class StreamControlerERemover implements IStreamProcessor {
 
     @Override
     public void process(Reader in, Writer out) throws IOException {
         int data = in.read();
-        while(data != -1) {
-            out.write(data);
+        while (data != -1) {
+            if (data != 'e' && data != 'E') {
+                out.write(data);
+            }
             data = in.read();
         }
     }
-    
+
 }
